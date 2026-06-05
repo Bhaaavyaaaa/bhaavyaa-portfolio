@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work | Bhavya Arora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: #080c14;
+            border-color: var(--accent);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-card {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .portfolio-thumb {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(56,189,248,0.1), rgba(45,212,191,0.1));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .portfolio-thumb i { font-size: 3.5rem; color: var(--accent); opacity: 0.6; }
+
+        .portfolio-tag {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: rgba(8,12,20,0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--card-border);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--teal);
+            text-transform: uppercase;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .portfolio-content h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
+
+        .portfolio-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(8,12,20,0.85);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 520px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-box i.modal-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .modal-box h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+        .modal-box p  { color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="cursor-glow" id="glow"></div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BA<span>.</span></a>
+            <nav>
+                <ul class="nav-links" id="menu-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="section-header">
+            <p>Case Studies &amp; Results</p>
+            <h2>Selected Work</h2>
+        </div>
+
+        <div class="filter-container scroll-animate">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="seo">SEO</button>
+            <button class="filter-btn" data-filter="content">Content</button>
+            <button class="filter-btn" data-filter="social">Social</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-card glass-card scroll-animate" data-cat="content">
+                <div class="portfolio-thumb">
+                    <i class="fa-solid fa-newspaper"></i>
+                    <div class="portfolio-tag">Content</div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Blog Writing Portfolio</h3>
+                    <p>A library of multi-market structural articles focusing on search engine guidelines, readable structures, and semantic optimisation paths.</p>
+                    <button class="btn btn-secondary open-modal">View Case Study</button>
+                </div>
+            </div>
+
+            <div class="portfolio-card glass-card scroll-animate" data-cat="seo">
+                <div class="portfolio-thumb">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <div class="portfolio-tag">SEO</div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Kyra Clinic SEO Campaign</h3>
+                    <p>Full optimisation roadmap covering local map layers, structural schema generation, site architecture, and top keyword positioning. 25+ keywords ranked in top 10.</p>
+                    <button class="btn btn-secondary open-modal">View Case Study</button>
+                </div>
+            </div>
+
+            <div class="portfolio-card glass-card scroll-animate" data-cat="seo">
+                <div class="portfolio-thumb">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    <div class="portfolio-tag">SEO</div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>SERP Ranking Reports</h3>
+                    <p>Documented search tracking reports highlighting visibility paths and stable target keyword capture configurations across multiple competitive terms.</p>
+                    <button class="btn btn-secondary open-modal">View Case Study</button>
+                </div>
+            </div>
+
+            <div class="portfolio-card glass-card scroll-animate" data-cat="social">
+                <div class="portfolio-thumb">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <div class="portfolio-tag">Social</div>
+                </div>
+                <div class="portfolio-content">
+                    <h3>Advid Clothing Brand Growth</h3>
+                    <p>Complete deployment structure managing aesthetic visual grids, performance tracking models, and community growth funnels across social platforms.</p>
+                    <button class="btn btn-secondary open-modal">View Case Study</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer>
+        &copy; 2026 Bhavya Arora &middot; SEO Executive &amp; Digital Marketing Specialist
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="case-modal">
+        <div class="modal-box glass-card">
+            <button class="modal-close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <i class="fa-solid fa-lock modal-icon"></i>
+            <h3>Case Study Access</h3>
+            <p>Detailed analytical reports and client optimisation frameworks are restricted to private data. Request access directly via the contact form.</p>
+            <a href="contact.html" class="btn btn-primary">Contact Me <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </div>
+
+    <script src="assets/main.js"></script>
+    <script>
+        // Filter
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelector('.filter-btn.active').classList.remove('active');
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.portfolio-card').forEach(card => {
+                    card.style.display = (filter === 'all' || card.getAttribute('data-cat') === filter) ? 'flex' : 'none';
+                });
+            });
+        });
+
+        // Modal
+        const modal = document.getElementById('case-modal');
+        document.querySelectorAll('.open-modal').forEach(btn => {
+            btn.addEventListener('click', () => modal.classList.add('open'));
+        });
+        document.getElementById('modal-close').addEventListener('click', () => modal.classList.remove('open'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
+    </script>
+</body>
+</html>

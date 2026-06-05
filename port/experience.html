@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | Bhavya Arora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 0;
+            width: 2px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--teal), transparent);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item:nth-child(odd)  { left: 0;   padding-right: 3rem; }
+        .timeline-item:nth-child(even) { left: 50%; padding-left: 3rem; }
+
+        .timeline-dot {
+            position: absolute;
+            top: 30px;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 4px solid var(--accent);
+            z-index: 10;
+        }
+
+        .timeline-item:nth-child(odd)  .timeline-dot { right: -10px; }
+        .timeline-item:nth-child(even) .timeline-dot { left: -10px; }
+
+        .exp-card h3 { font-size: 1.4rem; margin-bottom: 0.25rem; }
+
+        .exp-company {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .exp-date {
+            font-size: 0.85rem;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        .exp-card ul { list-style: none; margin-top: 1rem; }
+
+        .exp-card ul li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .exp-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--teal); }
+
+        /* ── Freelance ── */
+        .freelance-section { margin-top: 5rem; text-align: center; }
+        .freelance-section h3 { font-size: 2rem; margin-bottom: 2rem; }
+
+        .freelance-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .freelance-card { padding: 2rem; text-align: center; }
+        .freelance-card i  { font-size: 2rem; color: var(--teal); margin-bottom: 1rem; display: block; }
+        .freelance-card h4 { font-size: 1.2rem; margin-bottom: 0.75rem; }
+        .freelance-card p  { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+
+        @media (max-width: 992px) {
+            .timeline::before { left: 20px; }
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 3.5rem !important;
+                padding-right: 0 !important;
+            }
+            .timeline-dot { left: 10px !important; right: auto !important; }
+        }
+
+        @media (max-width: 768px) {
+            .freelance-grid { grid-template-columns: 1fr; }
+            .exp-company { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="cursor-glow" id="glow"></div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BA<span>.</span></a>
+            <nav>
+                <ul class="nav-links" id="menu-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="section-header">
+            <p>Professional Timeline</p>
+            <h2>Work Experience</h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item scroll-animate">
+                <div class="timeline-dot"></div>
+                <div class="exp-card glass-card">
+                    <div class="exp-company">
+                        <span>Scorpius Technology Pvt Ltd</span>
+                        <span class="exp-date">Apr 2026 – Present</span>
+                    </div>
+                    <h3>SEO Executive</h3>
+                    <ul>
+                        <li>Architecting full on-page configurations and crawl map strategies for dynamic domains.</li>
+                        <li>Building high-quality link profiles and authority validation systems across UK and USA market sectors.</li>
+                        <li>Configuring search analytics tracking pipelines, schema graphs, and performance audits within GSC environments.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item scroll-animate">
+                <div class="timeline-dot"></div>
+                <div class="exp-card glass-card">
+                    <div class="exp-company">
+                        <span>Kyra Clinic</span>
+                        <span class="exp-date">Nov 2025 – Apr 2026</span>
+                    </div>
+                    <h3>Digital Marketing Assistant</h3>
+                    <ul>
+                        <li>Successfully ranked 25+ target commercial terms within top 10 positions (ranks 2–3 in Ludhiana geo-targets).</li>
+                        <li>Created and distributed 24+ long-form search-optimised knowledge assets driving transactional traffic.</li>
+                        <li>Configured video layouts, organic distributions, social media assets, and targeted paid ad conversions.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item scroll-animate">
+                <div class="timeline-dot"></div>
+                <div class="exp-card glass-card">
+                    <div class="exp-company">
+                        <span>DigiKnowHow</span>
+                        <span class="exp-date">Jun 2025 – Oct 2025</span>
+                    </div>
+                    <h3>Digital Marketing Intern</h3>
+                    <ul>
+                        <li>Executed core daily search tasks, anchor layouts, profile tracking, and foundational backlink audits.</li>
+                        <li>Conducted systematic verification processes using SEMrush, Ahrefs, and analytics reporting tools.</li>
+                        <li>Maintained standard brand posting pipelines, visual scheduling mechanics, and content matrices.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="freelance-section scroll-animate">
+            <h3>Freelance &amp; Client Projects</h3>
+            <div class="freelance-grid">
+                <div class="freelance-card glass-card">
+                    <i class="fa-solid fa-shirt"></i>
+                    <h4>woolenwear.in</h4>
+                    <p>E-commerce search matrix layouts, structural metadata adjustments, and localised search optimisations.</p>
+                </div>
+                <div class="freelance-card glass-card">
+                    <i class="fa-solid fa-cake-candles"></i>
+                    <h4>mybakers</h4>
+                    <p>Localised search pack optimisation maps, category layout adjustments, and local profile optimisations.</p>
+                </div>
+                <div class="freelance-card glass-card">
+                    <i class="fa-solid fa-tags"></i>
+                    <h4>Advid Clothing</h4>
+                    <p>Brand deployment models, niche keyword strategy setups, and digital asset tracking structures.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Bhavya Arora &middot; SEO Executive &amp; Digital Marketing Specialist
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>
