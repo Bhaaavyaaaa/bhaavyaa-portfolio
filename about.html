@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Bhavya Arora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .about-intro-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+
+        .about-statement {
+            font-size: 1.6rem;
+            line-height: 1.4;
+            font-family: 'Syne', sans-serif;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .about-description {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .services-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h4 { font-size: 1.35rem; margin-bottom: 1rem; }
+        .service-card p  { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        .about-cta {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .about-cta h3 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+        @media (max-width: 992px) {
+            .about-intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="cursor-glow" id="glow"></div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BA<span>.</span></a>
+            <nav>
+                <ul class="nav-links" id="menu-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="section-header">
+            <p>Get to Know Me</p>
+            <h2>About Me</h2>
+        </div>
+
+        <div class="about-intro-grid scroll-animate">
+            <div class="about-statement">
+                Driven to transform online visibility by merging search analytics, tactical content architectures, and organic data systems.
+            </div>
+            <div class="about-description">
+                I am an SEO Executive &amp; Digital Marketing Specialist located in Punjab, India. With a solid engineering bedrock as a B.Tech Computer Science student at the Gulzar Group of Institutes, I combine core technical comprehension with online organic marketing strategies. My operations centre around deploying measurable search methodologies to scale visibility, optimise indexation, and capture targeted search intent loops cleanly.
+            </div>
+        </div>
+
+        <h3 class="services-title scroll-animate">What I Excel At</h3>
+
+        <div class="services-grid">
+            <div class="service-card glass-card scroll-animate">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                <h4>Search Engine Optimisation</h4>
+                <p>Executing technical search diagnostics, custom site architectures, precise mapping protocols, and localised strategies designed to secure dominant SERP share assets.</p>
+            </div>
+            <div class="service-card glass-card scroll-animate">
+                <i class="fa-solid fa-pen-fancy"></i>
+                <h4>Content Strategy</h4>
+                <p>Constructing high-intent topical frameworks and engineering informative blog blueprints built explicitly to clear crawler evaluation bars and fulfil organic search needs.</p>
+            </div>
+            <div class="service-card glass-card scroll-animate">
+                <i class="fa-solid fa-share-nodes"></i>
+                <h4>Social Media Planning</h4>
+                <p>Managing complete organic distributions, visual growth assets, identity placement pipelines, and customised metrics capture structures across major social profiles.</p>
+            </div>
+            <div class="service-card glass-card scroll-animate">
+                <i class="fa-solid fa-rectangle-ad"></i>
+                <h4>Paid Media Management</h4>
+                <p>Building high-performance target models, creative content variations, strategic asset sets, and optimised return pipelines on top ad distribution layers.</p>
+            </div>
+        </div>
+
+        <div class="about-cta glass-card scroll-animate">
+            <h3>Ready to Scale Your Digital Visibility?</h3>
+            <a href="contact.html" class="btn btn-primary" style="margin-top:0.5rem;">Get in Touch <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Bhavya Arora &middot; SEO Executive &amp; Digital Marketing Specialist
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>

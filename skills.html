@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Bhavya Arora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        .skills-container-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+        }
+
+        .skills-left h3,
+        .skills-right h3 {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .skills-left h3::after,
+        .skills-right h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 60px; height: 3px;
+            background: var(--accent);
+        }
+
+        .skill-bar-wrapper { margin-bottom: 1.8rem; }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .skill-progress-bg {
+            width: 100%; height: 8px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--teal));
+            border-radius: 10px;
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .skills-categories-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-mini-card { padding: 1.5rem; }
+        .category-mini-card h4 { color: var(--teal); margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .category-mini-card p  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 1rem;
+            text-align: center;
+        }
+
+        .tool-item i    { font-size: 2rem; margin-bottom: 0.6rem; color: var(--accent); }
+        .tool-item span { font-size: 0.85rem; font-weight: 600; }
+
+        @media (max-width: 992px) {
+            .skills-container-grid { grid-template-columns: 1fr; }
+            .skills-categories-cards { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .skills-categories-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <canvas id="particle-canvas"></canvas>
+    <div class="cursor-glow" id="glow"></div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">BA<span>.</span></a>
+            <nav>
+                <ul class="nav-links" id="menu-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="work.html">Work</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>
+                        <button class="theme-toggle" id="theme-btn" aria-label="Toggle Theme">
+                            <i class="fa-solid fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <div class="section-header">
+            <p>Proficiencies &amp; Stack</p>
+            <h2>My Skill Architecture</h2>
+        </div>
+
+        <div class="skills-container-grid">
+            <!-- Skill Bars -->
+            <div class="skills-left glass-card scroll-animate">
+                <h3>Performance Vectors</h3>
+
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>On-Page SEO</span><span>95%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="95%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Keyword Research</span><span>95%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="95%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Local SEO</span><span>92%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="92%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Off-Page SEO (Link Building)</span><span>90%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="90%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Content Development</span><span>90%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="90%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Google Analytics 4</span><span>88%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="88%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Technical SEO</span><span>85%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="85%"></div></div>
+                </div>
+                <div class="skill-bar-wrapper">
+                    <div class="skill-info"><span>Paid Media (Google Ads)</span><span>80%</span></div>
+                    <div class="skill-progress-bg"><div class="skill-progress-fill" data-percent="80%"></div></div>
+                </div>
+            </div>
+
+            <!-- Categories + Tools -->
+            <div class="skills-right">
+                <div class="skills-categories-cards">
+                    <div class="category-mini-card glass-card scroll-animate">
+                        <h4>Organic Core</h4>
+                        <p>Advanced keyword mapping, schema markup, snippet optimisation, and local pack strategies.</p>
+                    </div>
+                    <div class="category-mini-card glass-card scroll-animate">
+                        <h4>Content Distribution</h4>
+                        <p>Intent clustering, search optimisation, engagement funnels, and continuous performance tuning.</p>
+                    </div>
+                    <div class="category-mini-card glass-card scroll-animate">
+                        <h4>Social Analytics</h4>
+                        <p>Audience profile modelling, community engagement metrics, and specialised visual workflows.</p>
+                    </div>
+                    <div class="category-mini-card glass-card scroll-animate">
+                        <h4>Strategic Engineering</h4>
+                        <p>Algorithm tracking, performance frameworks, crawl budget allocation, and logic design.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card scroll-animate">
+                    <h3>Tool Suite</h3>
+                    <div class="tools-grid">
+                        <div class="tool-item glass-card">
+                            <i class="fa-solid fa-chart-line"></i><span>GA4</span>
+                        </div>
+                        <div class="tool-item glass-card">
+                            <i class="fa-solid fa-sliders"></i><span>GSC</span>
+                        </div>
+                        <div class="tool-item glass-card">
+                            <i class="fa-solid fa-fire"></i><span>SEMrush</span>
+                        </div>
+                        <div class="tool-item glass-card">
+                            <i class="fa-solid fa-bolt"></i><span>Ahrefs</span>
+                        </div>
+                        <div class="tool-item glass-card">
+                            <i class="fa-brands fa-wordpress"></i><span>WordPress</span>
+                        </div>
+                        <div class="tool-item glass-card">
+                            <i class="fa-solid fa-palette"></i><span>Canva</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Bhavya Arora &middot; SEO Executive &amp; Digital Marketing Specialist
+    </footer>
+
+    <script src="assets/main.js"></script>
+    <script>
+        // Trigger skill bars after page loads
+        setTimeout(() => {
+            document.querySelectorAll('.skill-progress-fill').forEach(bar => {
+                bar.style.width = bar.getAttribute('data-percent');
+            });
+        }, 300);
+    </script>
+</body>
+</html>
